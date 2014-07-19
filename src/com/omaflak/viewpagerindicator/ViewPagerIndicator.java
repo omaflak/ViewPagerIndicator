@@ -42,7 +42,7 @@ public class ViewPagerIndicator extends LinearLayout implements OnPageChangeList
     		circles.add(circle);
     	}
     	
-    	circles.get(0).setColor(Color.BLACK);
+    	circles.get(pager.getCurrentItem()).setColor(Color.BLACK);
     	drawCircles();
     }
     

@@ -10,9 +10,9 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.AttributeSet;
 import android.view.Gravity;
-import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
-public class ViewPagerIndicator extends LinearLayout implements OnPageChangeListener{
+public class ViewPagerIndicator extends RelativeLayout implements OnPageChangeListener{
 	private List<CircleView> circles = new ArrayList<CircleView>();
 	private float radius;
 	private ViewPager pager;
@@ -40,8 +40,13 @@ public class ViewPagerIndicator extends LinearLayout implements OnPageChangeList
     		CircleView circle = new CircleView(this.getContext());
         	circle.setRadius(radius);
         	circle.setColor(colorFix);
-    		LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 1.0f);
-    		circle.setLayoutParams(p);
+        	circle.setId(1000+i);
+        	RelativeLayout.LayoutParams p = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+    		if(i>0){
+    			p.addRule(RelativeLayout.RIGHT_OF, circles.get(i-1).getId());
+    			p.setMargins(10, 0, 0, 0);
+    		}
+        	circle.setLayoutParams(p);
     		circles.add(circle);
     	}
     	
@@ -52,7 +57,7 @@ public class ViewPagerIndicator extends LinearLayout implements OnPageChangeList
     private void drawCircles(){
     	super.removeAllViews();
     	for (int i=0 ; i<circles.size() ; i++)
-    		super.addView(circles.get(i));    	
+    		super.addView(circles.get(i), circles.get(i).getLayoutParams());
     }
 
 	@Override
@@ -81,8 +86,8 @@ public class ViewPagerIndicator extends LinearLayout implements OnPageChangeList
 		radius=20;
 		colorFix=Color.LTGRAY;
 		colorMove=Color.BLACK;
-		super.setOrientation(LinearLayout.HORIZONTAL);
 		super.setGravity(Gravity.CENTER_HORIZONTAL);
+		super.setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT));
 	}
 	
 	public void setColorFix(int colorFix) {

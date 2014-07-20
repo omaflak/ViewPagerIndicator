@@ -7,7 +7,6 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.View;
-import android.widget.LinearLayout;
 
 @SuppressLint("NewApi") 
 public class CircleView extends View {
@@ -31,9 +30,6 @@ public class CircleView extends View {
     }
      
     private void init(){
-    	LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, 
-    			LinearLayout.LayoutParams.WRAP_CONTENT, 1.0f);
-    	super.setLayoutParams(p);
 	    paint = new Paint();
     }
      

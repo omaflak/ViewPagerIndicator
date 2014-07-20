@@ -1,5 +1,6 @@
 package com.omaflak.viewpagerindicator;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
@@ -20,6 +21,8 @@ public class MainActivity extends FragmentActivity {
 		
 		viewPager.setAdapter(adapter);
 		vpi.setRadius(15);
+		vpi.setColorFix(Color.LTGRAY);
+		vpi.setColorMove(Color.BLACK);
 		vpi.setViewPager(viewPager);
     }
 }

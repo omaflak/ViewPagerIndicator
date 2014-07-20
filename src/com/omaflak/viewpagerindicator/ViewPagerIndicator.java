@@ -14,12 +14,15 @@ import android.widget.RelativeLayout;
 
 public class ViewPagerIndicator extends RelativeLayout implements OnPageChangeListener{
 	private List<CircleView> circles = new ArrayList<CircleView>();
+	private CircleView circle_move;
 	private ViewPager pager;
 	private float radius;
 	private int colorFix;
 	private int colorMove;
 	private int margin;
-
+	private float oldP=0;
+	private boolean avant = true;
+	
 	public ViewPagerIndicator(Context context) {
 		super(context);
 		init();
@@ -47,7 +50,8 @@ public class ViewPagerIndicator extends RelativeLayout implements OnPageChangeLi
     		circles.add(circle);
     	}
     	
-    	circles.get(pager.getCurrentItem()).setColor(colorMove);
+    	circle_move.setRadius(radius);
+    	circle_move.setColor(colorMove);
     	drawCircles();
     }
     
@@ -55,24 +59,43 @@ public class ViewPagerIndicator extends RelativeLayout implements OnPageChangeLi
     	super.removeAllViews();
     	for (int i=0 ; i<circles.size() ; i++)
     		super.addView(circles.get(i), circles.get(i).getLayoutParams());
+    	
+    	super.addView(circle_move, circle_move.getLayoutParams());
     }
 
 	@Override
 	public void onPageScrollStateChanged(int state) {
-		if(state==ViewPager.SCROLL_STATE_IDLE){
-			int pos = pager.getCurrentItem();
-			for (int i=0 ; i<circles.size() ; i++){
-				if(i==pos)
-					circles.get(i).setColor(colorMove);
-				else
-					circles.get(i).setColor(colorFix);
-			}
-			drawCircles();
-		}
 	}
 
 	@SuppressLint("NewApi") @Override
 	public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+		if(positionOffset>0){	
+			float p = positionOffset*(margin+2*radius);
+			if(p-oldP>(margin+2*radius)/2){
+				oldP=margin+2*radius;
+				avant=false;
+			}
+			if(p-oldP<-(margin+2*radius)/2){
+				oldP=0;
+				avant=true;
+			}
+			
+			float x = circle_move.getX()+p-oldP;
+		    circle_move.setX(x);
+		    drawCircles();
+		    if(p<oldP)
+		    	avant = false;
+		    else
+		    	avant = true;
+		    oldP=p;
+		}
+		else{
+			if(avant)
+				oldP=0;
+			else
+				oldP=margin+2*radius;
+		}
+		
 	}
 
 	@Override
@@ -84,6 +107,10 @@ public class ViewPagerIndicator extends RelativeLayout implements OnPageChangeLi
 		margin=10;
 		colorFix=Color.LTGRAY;
 		colorMove=Color.BLACK;
+		circle_move = new CircleView(this.getContext());
+		circle_move.setRadius(radius);
+		circle_move.setColor(colorMove);
+    	circle_move.setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT));
 		super.setGravity(Gravity.CENTER_HORIZONTAL);
 		super.setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT));
 	}

@@ -15,7 +15,6 @@ import android.widget.RelativeLayout;
 public class ViewPagerIndicator extends RelativeLayout implements OnPageChangeListener{
 	private List<CircleView> circles = new ArrayList<CircleView>();
 	private CircleView circle_move;
-	private ViewPager pager;
 	private float radius;
 	private int colorFix;
 	private int colorMove;
@@ -34,7 +33,6 @@ public class ViewPagerIndicator extends RelativeLayout implements OnPageChangeLi
     }
 
     public void setViewPager(ViewPager pager){
-    	this.pager = pager;
     	pager.setOnPageChangeListener(this);
     	for (int i=0 ; i<pager.getAdapter().getCount() ; i++){
     		CircleView circle = new CircleView(this.getContext());

@@ -15,7 +15,7 @@
     <com.omaflak.viewpagerindicator.ViewPagerIndicator
         android:id="@+id/vpi"
         android:layout_width="fill_parent"
-        android:layout_height="20dip"
+        android:layout_height="wrap_content"
         android:layout_margin="5dip"
         android:layout_toEndOf="@id/pager"
         android:layout_alignParentBottom="true"

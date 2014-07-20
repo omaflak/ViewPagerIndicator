@@ -40,7 +40,7 @@ public class ViewPagerIndicator extends LinearLayout implements OnPageChangeList
     		CircleView circle = new CircleView(this.getContext());
         	circle.setRadius(radius);
         	circle.setColor(colorFix);
-    		LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 0.005f);
+    		LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 1.0f);
     		circle.setLayoutParams(p);
     		circles.add(circle);
     	}

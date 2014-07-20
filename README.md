@@ -12,15 +12,15 @@ ViewPagerIndicator
 2) In your activity or fragment or whatever, link the ViewPagerIndicator with your ViewPager
 
     // initialise variable and set adapter
-		viewPager = (ViewPager)findViewById(R.id.pager);
-		YourPagerAdapter adapter = new YourPagerAdapter(getSupportFragmentManager());
-	  viewPager.setAdapter(adapter);
+    viewPager = (ViewPager)findViewById(R.id.pager);
+    YourPagerAdapter adapter = new YourPagerAdapter(getSupportFragmentManager());
+    viewPager.setAdapter(adapter);
 
-		// make the link
-		ViewPagerIndicator vpi = (ViewPagerIndicator)findViewById(R.id.vpi);
-		vpi.setViewPager(viewPager);
+    // make the link
+    ViewPagerIndicator vpi = (ViewPagerIndicator)findViewById(R.id.vpi);
+    vpi.setViewPager(viewPager);
 		
 3) (Optional) You can set some preferences like : 
 
-		vpi.setRadius(15); /!\ To do before setting the ViewPager /!\
-		vpi.setMargin(15); /!\ To do before setting the ViewPager /!\
+    vpi.setRadius(15); /!\ To do before setting the ViewPager /!\
+    vpi.setMargin(15); /!\ To do before setting the ViewPager /!\

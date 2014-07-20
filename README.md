@@ -24,3 +24,5 @@ ViewPagerIndicator
 
     vpi.setRadius(15); /!\ To do before setting the ViewPager /!\
     vpi.setMargin(15); /!\ To do before setting the ViewPager /!\
+    vpi.setColorFix(Color.RED); /!\ To do before setting the ViewPager /!\
+    vpi.setColorMove(Color.BLACK); /!\ To do before setting the ViewPager /!\

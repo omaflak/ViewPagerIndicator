@@ -14,11 +14,12 @@ import android.widget.RelativeLayout;
 
 public class ViewPagerIndicator extends RelativeLayout implements OnPageChangeListener{
 	private List<CircleView> circles = new ArrayList<CircleView>();
-	private float radius;
 	private ViewPager pager;
+	private float radius;
 	private int colorFix;
 	private int colorMove;
-	
+	private int margin;
+
 	public ViewPagerIndicator(Context context) {
 		super(context);
 		init();
@@ -27,10 +28,6 @@ public class ViewPagerIndicator extends RelativeLayout implements OnPageChangeLi
     public ViewPagerIndicator(Context context, AttributeSet attrs) {
         super(context, attrs);
         init();
-    }
-    
-    public void setRadius(float radius){
-    	this.radius = radius;
     }
 
     public void setViewPager(ViewPager pager){
@@ -44,7 +41,7 @@ public class ViewPagerIndicator extends RelativeLayout implements OnPageChangeLi
         	RelativeLayout.LayoutParams p = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
     		if(i>0){
     			p.addRule(RelativeLayout.RIGHT_OF, circles.get(i-1).getId());
-    			p.setMargins(10, 0, 0, 0);
+    			p.setMargins(margin, 0, 0, 0);
     		}
         	circle.setLayoutParams(p);
     		circles.add(circle);
@@ -84,17 +81,26 @@ public class ViewPagerIndicator extends RelativeLayout implements OnPageChangeLi
 	
 	public void init(){
 		radius=20;
+		margin=10;
 		colorFix=Color.LTGRAY;
 		colorMove=Color.BLACK;
 		super.setGravity(Gravity.CENTER_HORIZONTAL);
 		super.setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT));
 	}
 	
+    public void setRadius(float radius){
+    	this.radius = radius;
+    }
+    
 	public void setColorFix(int colorFix) {
 		this.colorFix = colorFix;
 	}
 
 	public void setColorMove(int colorMove) {
 		this.colorMove = colorMove;
+	}
+	
+	public void setMargin(int margin) {
+		this.margin = margin;
 	}
 }

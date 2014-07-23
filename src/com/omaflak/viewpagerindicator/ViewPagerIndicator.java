@@ -81,10 +81,12 @@ public class ViewPagerIndicator extends RelativeLayout implements OnPageChangeLi
 			float x = circle_move.getX()+p-oldP;
 		    circle_move.setX(x);
 		    drawCircles();
+		    
 		    if(p<oldP)
 		    	avant = false;
 		    else
 		    	avant = true;
+		    
 		    oldP=p;
 		}
 		else{

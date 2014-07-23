@@ -21,8 +21,8 @@ public class MainActivity extends FragmentActivity {
 		
 		viewPager.setAdapter(adapter);
 		vpi.setRadius(15);
-		vpi.setMargin(60);
-		vpi.setColorFix(Color.RED);
+		vpi.setMargin(15);
+		vpi.setColorFix(Color.GRAY);
 		vpi.setColorMove(Color.BLACK);
 		vpi.setViewPager(viewPager);
     }
